@@ -6,6 +6,7 @@
 import argparse
 import pandas as pd
 import utils
+import re
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-m", "--model_name", type=str, default="gpt-3.5-turbo-0125")
@@ -43,5 +44,5 @@ inferenced = utils.inference_all(
     args=config["generate"],
     check_answer=True,
 )
-
-inferenced.to_csv(f"{config['output_folder']}{args.model_name}.csv", index=False)
+model_name = re.sub(r"/", "-", args.model_name)
+inferenced.to_csv(f"{config['output_folder']}{model_name}.csv", index=False)

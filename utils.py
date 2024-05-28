@@ -11,7 +11,7 @@ def prepare_model(model_name):
         from openai import OpenAI
         global client 
         client = OpenAI()
-    elif model_name in ["meta-llama/Meta-Llama-3-8B"]:
+    elif model_name in ["meta-llama/Meta-Llama-3-8B", "meta-llama/Meta-Llama-3-8B-Instruct", "mistralai/Mistral-7B-v0.1"]:
         from transformers import AutoTokenizer, AutoModelForCausalLM
         global tokenizer, pipeline
         tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -43,7 +43,7 @@ def get_completion(model_name, system_prompt, user_prompt, args):
             **args,
         )
         return response.choices[0].text
-    elif model_name in ["meta-llama/Meta-Llama-3-8B"]:
+    elif model_name in ["meta-llama/Meta-Llama-3-8B", "meta-llama/Meta-Llama-3-8B-Instruct", "mistralai/Mistral-7B-v0.1"]:
         sequences = pipeline(
             user_prompt,
             # f"{system_prompt}\n{user_prompt}",

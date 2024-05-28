@@ -57,7 +57,7 @@ def get_bias_score_in_amb(df):
 
 for f, df in zip(csv_files, dataframes):
     print(f"Model: {f}")
-    print(f"Exact Match: {utils.get_accuracy_all(df, exact_match=True)}")
+    # print(f"Exact Match: {utils.get_accuracy_all(df, exact_match=True)}")
     print(f"Include Match: {utils.get_accuracy_all(df, exact_match=False)}")
     print(utils.get_group_accuracy(df, "context_condition", exact_match=False))
     # print(f"bias score dis: {get_bias_score_in_dis(df)}")

@@ -1,5 +1,6 @@
 .DS_Store
 logs
 scripts/.env
+.env
 scripts/wandb
 models/checkpoint-50

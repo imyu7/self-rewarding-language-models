@@ -1,2 +1,5 @@
 .DS_Store
-.env
+logs
+scripts/.env
+scripts/wandb
+models/checkpoint-50

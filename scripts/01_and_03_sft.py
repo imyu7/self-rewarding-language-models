@@ -16,6 +16,7 @@ from peft import (
 from trl import SFTTrainer
 
 import sys, os
+import wandb
 
 if len(sys.argv) != 3:
     print("Usage: python 01_and_03_sft.py <dataset.json> <results_dir>")
@@ -150,6 +151,9 @@ def create_peft_config(model):
 
 model, lora_config = create_peft_config(base_model)
 
+wandb.init(project="LoRA-FT", name="experiment-2")
+
+
 training_args = TrainingArguments(
     output_dir=output_dir,
     per_device_train_batch_size=batch_size,
@@ -160,7 +164,8 @@ training_args = TrainingArguments(
     logging_steps=1,
     num_train_epochs=2,
     save_steps=50,
-    max_steps=350
+    max_steps=350,
+    report_to="wandb",
 
     # max_grad_norm=0.3,
     # gradient_checkpointing=True,

@@ -6,8 +6,8 @@ import pandas as pd
 
 config = {
     "input_folder": "BBQ/data/",
-    "output_train_file": "BBQ/data/sampled_bbq_train.csv", # 4 data for train
-    "output_test_file": "BBQ/data/sampled_bbq_test.csv", # 100 data for test
+    "output_train_file": "BBQ/data/sampled_bbq_train.csv", # 10 data for train
+    "output_test_file": "BBQ/data/sampled_bbq_test.csv", # 200 data for test
 }
 
 # choose category
@@ -21,21 +21,21 @@ category = [
     # "Race_x_gender", 
     # "Nationality", 
     "Religion", 
-    # "Physical_appearance", 
+    "Physical_appearance", 
     # "SES"
 ]
 
 train_idx = {
-    "Age": 40, 
-    "Race_ethnicity": 42, 
+    "Age": [40, 45], 
+    "Race_ethnicity": [41, 46], 
     # "Sexual_orientation", 
     # "Disability_status", 
     # "Race_x_SES", 
-    "Gender_identity": 41, 
+    "Gender_identity": [42, 47],
     # "Race_x_gender", 
     # "Nationality", 
-    "Religion": 43, 
-    # "Physical_appearance", 
+    "Religion": [43, 48],
+    "Physical_appearance": [44, 49],
     # "SES"
     }
 
@@ -47,8 +47,9 @@ for cat in category:
     df_cat_test = df_cat.head(40)
     df_cat_train = df_cat.iloc[train_idx[cat], :]
     df_test = pd.concat([df_test, df_cat_test], axis=0)
-    df_train = pd.concat([df_train, df_cat_train], axis=1)
-df_train = df_train.T
+    df_train = pd.concat([df_train, df_cat_train], axis=0)
+#     df_train = pd.concat([df_train, df_cat_train], axis=1)
+# df_train = df_train.T
 
 # preprocess
 def change_gender_terms(text):
